@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[이름]</title>
+<meta name="description" content="[이름]이라는 사람에 대한 몇 가지 이야기">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --text: #222120;
+    --muted: #8a8780;
+    --line: #e7e4dd;
+    --soft: #f1eee8;
+    --accent: #c4553b;
+    --serif: "Gowun Batang", "Noto Serif KR", serif;
+    --sans: "Pretendard", -apple-system, "Malgun Gothic", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161514;
+      --text: #ebe8e2;
+      --muted: #8f8b84;
+      --line: #2c2a27;
+      --soft: #201f1d;
+      --accent: #e48a6f;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.85;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .page { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 88vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 0 56px;
+  }
+  .hero .hello {
+    font-size: 14px; letter-spacing: 0.08em; color: var(--muted);
+    margin: 0 0 28px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(32px, 7vw, 48px);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    margin: 0 0 32px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .intro { color: var(--muted); margin: 0; max-width: 30em; }
+  .hero .scroll {
+    margin-top: 64px; font-size: 13px; color: var(--muted); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .hero .scroll::after { content: "↓"; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .label {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 12px;
+  }
+  h2 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: 28px; line-height: 1.45; letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .lead { color: var(--muted); margin: 0 0 44px; }
+
+  /* ---------- TMI ---------- */
+  .tmi { list-style: none; margin: 0; padding: 0; counter-reset: tmi; }
+  .tmi li {
+    counter-increment: tmi;
+    display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px;
+    padding: 24px 0; border-bottom: 1px dashed var(--line);
+  }
+  .tmi li:last-child { border-bottom: 0; }
+  .tmi li::before {
+    content: counter(tmi, decimal-leading-zero);
+    font-family: var(--serif); color: var(--muted); font-size: 15px; padding-top: 3px;
+  }
+  .tmi h3 { font-size: 17px; font-weight: 700; margin: 0; }
+  .tmi p { grid-column: 2; margin: 0; }
+
+  /* ---------- Tastes ---------- */
+  .tastes { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 24px; }
+  .taste figure { margin: 0; }
+  .taste .photo {
+    aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden;
+    background: var(--soft); margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); font-size: 13px;
+  }
+  .taste .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .taste .kind { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .taste h3 { font-family: var(--serif); font-size: 19px; margin: 2px 0 6px; line-height: 1.45; }
+  .taste p { margin: 0; font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+  /* ---------- Manual ---------- */
+  .manual-head {
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 13px; color: var(--muted);
+    border-top: 2px solid var(--text); border-bottom: 1px solid var(--line);
+    padding: 10px 0; margin-bottom: 8px;
+  }
+  .manual article { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .manual article:last-child { border-bottom: 0; }
+  .manual h3 {
+    font-size: 17px; margin: 0 0 10px;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .manual h3 span { font-family: var(--serif); color: var(--accent); font-weight: 400; font-size: 15px; }
+  .manual p { margin: 0 0 8px; }
+  .manual ul { margin: 0; padding-left: 0; list-style: none; }
+  .manual ul li { padding-left: 18px; position: relative; }
+  .manual ul li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+  .warn {
+    background: var(--soft); border-left: 3px solid var(--accent);
+    padding: 14px 18px; border-radius: 0 6px 6px 0; font-size: 15px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact { text-align: center; padding: 96px 0 72px; }
+  .contact h2 { margin-bottom: 14px; }
+  .contact .lead { margin-bottom: 32px; }
+  .icons { display: flex; justify-content: center; gap: 14px; }
+  .icons a {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text); transition: color .2s, border-color .2s, transform .2s;
+  }
+  .icons a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+  .icons svg { width: 20px; height: 20px; }
+
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 0 0 48px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    section { padding: 56px 0; }
+    .tastes { grid-template-columns: 1fr; gap: 36px; }
+    .taste .photo { aspect-ratio: 4 / 3; }
+    .tmi li { grid-template-columns: 36px 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 1. Hook -->
+  <header class="hero">
+    <p class="hello">HELLO, I'M [이름]</p>
+    <!--
+      한 줄 소개 후보 (마음에 드는 걸로 바꿔 쓰세요)
+      - 궁금한 건 못 참고, 좋아하는 건 <em>오래</em> 좋아하는 사람.
+      - 질문이 많은 편입니다. <em>대답도</em> 길고요.
+      - 검색 기록이 가장 <em>솔직한</em> 자기소개인 사람.
+      - 산책 30분이면 고민 <em>절반</em>이 사라지는 사람.
+      - 계획은 J처럼 세우고, 실행은 <em>P처럼</em> 하는 사람.
+    -->
+    <h1>궁금한 건 못 참고,<br>좋아하는 건 <em>오래</em> 좋아하는 사람.</h1>
+    <p class="intro">[이름]입니다. 이력서에는 절대 안 쓸 이야기들만 모아 두었어요. 천천히 내려가면서 저랑 조금 친해져 보세요.</p>
+    <a class="scroll" href="#tmi">아래로</a>
+  </header>
+
+  <!-- 2. TMI -->
+  <section id="tmi">
+    <p class="label">01 · My TMI</p>
+    <h2>아무도 안 물어봤지만<br>꼭 말하고 싶은 것들</h2>
+    <p class="lead">알아 두면 쓸데는 없지만, 대화가 끊길 때는 꽤 쓸모 있어요.</p>
+    <ol class="tmi">
+      <li>
+        <h3>이것만은 돈을 줘도 못 먹어요</h3>
+        <p>[못 먹는 음식과 그 이유]</p>
+      </li>
+      <li>
+        <h3>이력서에는 못 쓰는 특기</h3>
+        <p>[쓸데없지만 은근 자랑하고 싶은 특기]</p>
+      </li>
+      <li>
+        <h3>요즘 제 알고리즘을 점령한 것</h3>
+        <p>[최근 가장 꽂혀 있는 것]</p>
+      </li>
+      <li>
+        <h3>저만 아는 이상한 징크스</h3>
+        <p>[혼자 지키는 습관이나 징크스]</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 3. Tastes -->
+  <section id="tastes">
+    <p class="label">02 · Tastes &amp; Favorites</p>
+    <h2>저를 만든 것들</h2>
+    <p class="lead">반복 재생하고, 몇 번씩 다시 보고, 자꾸 찾아가는 것들이에요.</p>
+    <div class="tastes">
+      <!-- 사진은 images 폴더에 넣고 src 경로를 바꾸세요. 사진이 없으면 회색 칸으로 보입니다. -->
+      <figure class="taste">
+        <div class="photo"><img src="images/music.jpg" alt="" onerror="this.remove()"></div>
+        <span class="kind">Music</span>
+        <h3>[노래 제목 — 가수]</h3>
+        <p>[언제 듣는지, 왜 좋은지 한두 줄]</p>
+      </figure>
+      <figure class="taste">
+        <div class="photo"><img src="images/movie.jpg" alt="" onerror="this.remove()"></div>
+        <span class="kind">Movie</span>
+        <h3>[영화 제목]</h3>
+        <p>[몇 번 봤는지, 좋아하는 장면]</p>
+      </figure>
+      <figure class="taste">
+        <div class="photo"><img src="images/book.jpg" alt="" onerror="this.remove()"></div>
+        <span class="kind">Book</span>
+        <h3>[책 제목]</h3>
+        <p>[마음에 남은 문장이나 읽은 계기]</p>
+      </figure>
+      <figure class="taste">
+        <div class="photo"><img src="images/place.jpg" alt="" onerror="this.remove()"></div>
+        <span class="kind">Place</span>
+        <h3>[좋아하는 장소]</h3>
+        <p>[그곳에서 주로 하는 일]</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. Manual -->
+  <section id="manual">
+    <p class="label">03 · How to deal with me</p>
+    <h2>[이름] 사용 설명서</h2>
+    <p class="lead">사용 전 반드시 읽어 주세요. 읽고 나면 고장 날 일이 거의 없습니다.</p>
+
+    <div class="manual">
+      <div class="manual-head"><span>모델명: [이름]</span><span>제조연도: [출생연도]</span></div>
+
+      <article>
+        <h3><span>01</span>처음 켜는 방법</h3>
+        <p>[처음 만났을 때 친해지는 방법. 예: 먼저 말 걸어 주면 그다음부터는 제가 알아서 떠듭니다.]</p>
+      </article>
+
+      <article>
+        <h3><span>02</span>성능이 올라가는 말</h3>
+        <ul>
+          <li>"[들으면 기분 좋아지는 말 1]"</li>
+          <li>"[들으면 기분 좋아지는 말 2]"</li>
+          <li>"[들으면 기분 좋아지는 말 3]"</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span>03</span>과열 경고 신호</h3>
+        <p>스트레스를 받으면 이런 증상이 나타납니다.</p>
+        <ul>
+          <li>[스트레스받을 때 하는 행동 1]</li>
+          <li>[스트레스받을 때 하는 행동 2]</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3><span>04</span>충전 방법</h3>
+        <p>[기분이 회복되는 방법. 예: 맛있는 거 + 혼자 있는 시간 반나절이면 완충됩니다.]</p>
+      </article>
+
+      <article>
+        <h3><span>05</span>주의 사항</h3>
+        <p class="warn">[이것만은 하지 말아 주세요. 예: 약속 시간 직전에 취소하기]</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 5. Contact -->
+  <section class="contact" id="contact">
+    <h2>저와 더 재미있는 이야기를<br>나누고 싶다면?</h2>
+    <p class="lead">편하게 말 걸어 주세요. 답장은 빠른 편이에요.</p>
+    <div class="icons">
+      <a href="mailto:[이메일]" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+      <a href="https://instagram.com/[인스타그램아이디]" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>© 2026 [이름]</footer>
+
+</div>
+</body>
+</html>
